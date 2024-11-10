@@ -37,8 +37,8 @@ const Banner = () => {
         
         {
           data.map((image) => {
-            return <div className="relative focus:outline-none  px-5 bg-white">
-              <img className="w-full mx-auto h-[280px] focus:outline-none py-5 md:h-[650px]"
+            return <div className="relative focus:outline-none bg-white">
+              <img className="w-full mx-auto h-[280px] focus:outline-none md:h-[650px]"
                 src={image.image_url}
                 alt=""
               />

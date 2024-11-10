@@ -69,7 +69,7 @@ const CreactProduct = () => {
             });
 
             const data = await response.json();
-            console.log(data);
+            alert(data?.message)
         } catch (error) {
             console.error('Error updating variant:', error);
         }
@@ -100,7 +100,6 @@ const CreactProduct = () => {
             });
 
             const data = await response.json();
-            console.log(data);
             if (data) {
                 handleCreate(data.image_url)
             }
@@ -125,7 +124,7 @@ const CreactProduct = () => {
                         <SelectionComponent options={type} onSelect={(e) => setValues({ ...values, product_type: e })} label={"Product Type"} />
                         <InputComponent onChange={(e) => setValues({ ...values, price: e })} label={"Price"} placeholder={"Price"} type={"number"} isRequered={""} />
                         <InputComponent onChange={(e) => setValues({ ...values, standerd_price: e })} label={"Standrard Price"} placeholder={"Standrard Price"} type={"number"} isRequered={""} />
-                        <SelectionComponent options={category} onSelect={(e) => setValues({ ...values, product_type: e })} label={"Category"} />
+                        <SelectionComponent options={category} onSelect={(e) => setValues({ ...values, category_id: e })} label={"Category"} />
                         <div>
                             <ShowAttribute values={values.attribute}/>
                             <div className={`${values.attribute.length > 0 ? '':'mt-[22px]'}`}>

@@ -9,7 +9,7 @@ const Op = db.Sequelize.Op;
 exports.getOrder = async (req, res) => {
     try {
         let data = await SaleOrder.findAll({
-            limit: 10,
+            limit: 50,
             include: [
                 {
                     model: ProductVariant,
@@ -41,6 +41,34 @@ exports.getUserOrder = async (req, res) => {
         let data = await SaleOrder.findAll({
             where: {
                 userId: req.userId
+            },
+            include: [
+                {
+                    model: ProductVariant,
+                    include: [
+                        {
+                            model: ProductAttribute,
+                            attributes: ['name', 'value']
+                        }
+                    ]
+                }
+            ]
+        })
+        res.status(200).send({
+            success: true,
+            items: data
+        })
+
+    } catch (error) {
+        res.status(500).send({ success: false, message: error.message });
+    }
+}
+
+exports.getInstantOrder = async (req, res) => {
+    try {
+        let data = await SaleOrder.findAll({
+            where: {
+                tran_id: req.params.tran_id
             },
             include: [
                 {

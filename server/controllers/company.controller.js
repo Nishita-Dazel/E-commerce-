@@ -49,11 +49,11 @@ exports.updateInfo = async (req, res) => {
             phone2,
             address
         },
-        {
-            where: {
-                id: 1
-            }
-        });
+            {
+                where: {
+                    id: 1
+                }
+            });
 
         if (updated) {
             res.status(200).send({
@@ -70,6 +70,21 @@ exports.updateInfo = async (req, res) => {
         res.status(500).send({
             success: false,
             message: 'Internal server error'
+        });
+    }
+};
+
+exports.GetCompanyInfo = async (req, res) => {
+    try {
+        const data = await Company.findOne(); // Retrieves the first entry in the Company table
+        res.status(200).send({
+            success: true,
+            items: data
+        });
+    } catch (error) {
+        res.status(500).send({
+            success: false,
+            message: error.message
         });
     }
 };

@@ -11,6 +11,7 @@ module.exports = function (app) {
 
     app.get('/api/get/order', jwt.verifyToken, controller.getOrder);
     app.get('/api/get/user/order',jwt.verifyToken, controller.getUserOrder);
+    app.get('/api/get/user/order/:tran_id',jwt.verifyToken, controller.getInstantOrder);
     // app.post('/api/create/carousel', jwt.verifyToken, controller.CreateCarousel);
     // app.patch('/api/update/carousel', jwt.verifyToken, controller.updateCarousel);
     // app.delete('/api/delete/carousel/:id', jwt.verifyToken, controller.DeleteCarousel);

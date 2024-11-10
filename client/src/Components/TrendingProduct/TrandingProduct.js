@@ -17,7 +17,7 @@ const Trending_Product = () => {
 
     return (
         <div className='bg-gray-100 pb-3 lg:pb-5'>
-            <div className='flex justify-between items-center py-8 px-5'>
+            <div className='flex justify-between items-center py-8 mx-5'>
                 <div className='border-b-2 border-red-500'>
                     <h1 className='font-bold text-lg  lg:text-2xl py-1'>TRENDING PRODUCTS</h1>
                 </div>

@@ -46,13 +46,19 @@
     {
         "id":"1",
         "name":"Notification",
-        "route":"/dashboard",
+        "route":"notification",
         "icon":"tdesign:notification"
     },
     {
         "id":"1",
         "name":"Hotsale",
         "route":"hotsale",
+        "icon":"fluent-mdl2:product-variant"
+    },
+    {
+        "id":"1",
+        "name":"Conpany Info",
+        "route":"company/info",
         "icon":"fluent-mdl2:product-variant"
     }
 ]

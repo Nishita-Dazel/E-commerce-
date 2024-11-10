@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from "react";
 import logo from "../Logo/Mahlun.PNG"
+import profile from "../Logo/userProfile.png"
 import SmallSize from "./SmallSize";
 import { addCart } from "../Redux/slices/CartSlice";
 import { addAllDataanother, IsLogin } from "../Redux/slices/authSlice";
@@ -11,17 +12,17 @@ import { addAllDataanother, IsLogin } from "../Redux/slices/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const auth = useSelector((state)=>state?.auth?.login)
+  const auth = useSelector((state) => state?.auth?.login)
   const [searchData, setSearchData] = useState([]);
   const [contuct, setContuct] = useState(false)
   const [open1, setOpen1] = useState(false)
   const [open, setOpen] = useState(false)
   const [select, setSelect] = useState("")
-  const length = useSelector(state => state?.cart?.data)
+  const cart = useSelector(state => state?.cart?.data);
+  const [userInfo, setUserInfo] = useState({})
 
 
-  const fetchCartData = async () => {
-    const token = localStorage.getItem('token')
+  const fetchCartData = async (token) => {
     const response = await fetch(`http://localhost:8050/api/product/add/to/cart`, {
       method: "GET",
       headers: {
@@ -30,35 +31,50 @@ const Header = () => {
       },
     })
     const data = await response.json();
-    if(data?.message === "Invalid token"){
-      localStorage.setItem('token', null);
-      dispatch(IsLogin(true));
+    if (data?.message === "Invalid token") {
+      // localStorage.setItem('token', '');
+      dispatch(IsLogin(false));
     }
     dispatch(addCart(data.items))
 
   }
 
-  const fetchUserData = async () => {
-    const token = localStorage.getItem('token');
+  const fetchUserData = async (token) => {
+
     try {
-        const response = await fetch(`http://localhost:8050/api/get/single/users`, {
-            method: "GET",
-            headers: {
-                "authorization": token,
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        });
+      const response = await fetch(`http://localhost:8050/api/get/single/users`, {
+        method: "GET",
+        headers: {
+          "authorization": token,
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
 
-        if (!response.ok) {
-            throw new Error(`Failed to fetch data: ${response.statusText}`);
-        }
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.statusText}`);
+      }
 
-        const data = await response.json();
-        dispatch(addAllDataanother(data?.items))
+      const data = await response.json();
+      dispatch(addAllDataanother(data?.items))
     } catch (error) {
-        console.error("Error fetching data:", error);
+      console.error("Error fetching data:", error);
     }
-};
+  };
+
+
+
+  const GetUserInfo = async (token) => {
+    const response = await fetch(`http://localhost:8050/api/get/single/users`, {
+      method: 'GET',
+      headers: {
+        "authorization": token,
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    const data = await response.json();
+    setUserInfo(data?.items);
+  }
+
 
 
   useEffect(() => {
@@ -69,8 +85,11 @@ const Header = () => {
       dispatch(IsLogin(false));
     }
 
-    fetchCartData();
-    fetchUserData()
+    if (token) {
+      fetchCartData(token);
+      fetchUserData(token);
+      GetUserInfo(token);
+    }
   }, [])
 
 
@@ -97,8 +116,21 @@ const Header = () => {
         <div className="grid grid-cols-12 mx-auto sticky top-0 z-50 w-full lg:w-[96%] bg-white">
 
           <div className="grid col-span-6 lg:col-span-3">
-            <NavLink to="/" className={`flex justify-start items-center gap-2 font-bold text-3xl text-orange-400 py-2 pl-2`}>
-              <img alt="" className="h-12" src={logo} />
+            <NavLink to="/" className={`flex justify-start items-center gap-2 font-bold text-3xl md:text-4xl text-orange-400 py-2 pl-2`}>
+              Dazel
+
+              <div className="transform scale-x-[-1]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64">
+                  <path fill="#b2c1c0" d="M53.1 38.6h-7.5v3.8h7.5c1 0 1.9.8 1.9 1.9s-.8 1.9-1.9 1.9H6.3c-1 0-1.9.8-1.9 1.9c0 1 .8 1.9 1.9 1.9h46.9c3.1 0 5.6-2.5 5.6-5.6c0-3.3-2.6-5.8-5.7-5.8m1.4-12.9l-3.7-.3c0-.1 2.3-13.8 2.8-16.6c.3-1.6.9-6.1 6.6-6.1v3.8c-2.3 0-2.6.9-2.8 2.6c-.6 2.8-2.9 16.4-2.9 16.6" />
+                  <path fill="#f15744" d="M54.7 12.3H4c-1.9 0-2.2 1.8-1.9 2.8l5.7 25.4c.3 1 1.3 1.8 2.4 1.8H50c1 0 2-.8 2.2-1.9l4.2-26.3c.1-.9-.7-1.8-1.7-1.8M6.9 20.8l-1-3.8c-.1-.5.2-.9.7-.9h7.1c.5 0 1 .4 1 .9l.4 3.8c.1.5-.3.9-.8.9H8c-.5 0-1-.4-1.1-.9m3.2 9.3c-.5 0-1-.4-1.2-.9l-.7-2.9c-.1-.5.2-.9.7-.9h5.7c.5 0 1 .4 1 .9l.3 2.8c.1.5-.3.9-.8.9c.1.1-5 .1-5 .1m6 8.5h-3.9c-.5 0-1-.4-1.2-.9l-.7-2.9c-.1-.5.2-.9.7-.9h4.5c.5 0 1 .4 1 .9l.3 2.8c.2.5-.2 1-.7 1m11.5-1c0 .5-.4.9-.9.9h-4.9c-.5 0-1-.4-1-.9l-.3-2.8c-.1-.5.3-.9.8-.9h5.4c.5 0 .9.4.9.9zm0-8.4c0 .5-.4.9-.9.9h-5.8c-.5 0-1-.4-1-.9l-.3-2.8c-.1-.5.3-.9.8-.9h6.3c.5 0 .9.4.9.9zm0-8.4c0 .5-.4.9-.9.9H20c-.5 0-1-.4-1-.9l-.5-3.8c-.1-.5.3-.9.8-.9h7.3c.5 0 .9.4.9.9c.1 0 .1 3.8.1 3.8m10.2 16.8c-.1.5-.5.9-1 .9h-4.4c-.5 0-.9-.4-.9-.9v-2.8c0-.5.4-.9.9-.9h4.9c.5 0 .9.4.8.9zm.9-8.4c-.1.5-.5.9-1 .9h-5.3c-.5 0-.9-.4-.9-.9v-2.8c0-.5.4-.9.9-.9h5.8c.5 0 .9.4.8.9zm.9-8.4c-.1.5-.5.9-1 .9h-6.2c-.5 0-.9-.4-.9-.9V17c0-.5.4-.9.9-.9h6.8c.5 0 .9.4.8.9zm8.7 16.8c-.1.5-.6.9-1.1.9h-4.8c-.5 0-.9-.4-.8-.9l.3-2.8c.1-.5.5-.9 1-.9H48c.5 0 .9.4.8.9zm1.3-8.4c-.1.5-.6.9-1.1.9h-5.3c-.5 0-.9-.4-.8-.9l.3-2.8c.1-.5.5-.9 1-.9h5.5c.5 0 .9.4.8.9zm1.3-8.4c-.1.5-.6.9-1.1.9h-5.7c-.5 0-.9-.4-.8-.9l.4-3.8c.1-.5.5-.9 1-.9h5.9c.5 0 .9.4.8.9z" />
+                  <circle cx="12.3" cy="56.4" r="5.6" fill="#62727a" />
+                  <circle cx="12.3" cy="56.4" r="2.8" fill="#fff" />
+                  <circle cx="46.1" cy="56.4" r="5.6" fill="#62727a" />
+                  <path fill="#fff" d="M48.9 56.4c0 1.6-1.3 2.8-2.8 2.8c-1.6 0-2.8-1.3-2.8-2.8c0-1.6 1.3-2.8 2.8-2.8s2.8 1.2 2.8 2.8" />
+                  <path fill="#62727a" d="M61.1 2h-2.8v5.6h2.8c.5 0 .9-.4.9-.9V2.9c0-.5-.4-.9-.9-.9" />
+                  <path fill="#f15744" d="M12.3 48.9c-4.1 0-7.5 3.4-7.5 7.5h15c0-4.2-3.3-7.5-7.5-7.5m33.8 0c-4.1 0-7.5 3.4-7.5 7.5h15c0-4.2-3.4-7.5-7.5-7.5" />
+                </svg>
+              </div>
             </NavLink>
           </div>
 
@@ -164,9 +196,11 @@ const Header = () => {
           <div className="col-span-6 lg:col-span-2 mr-3 ">
             <div className="flex justify-end items-center gap-2 my-auto h-full">
               <div className="hidden lg:block">
-                {auth ? <NavLink to='/profile' className='font-bold text-sm xl:text-md'>My Account</NavLink> : <NavLink to={`/login`} className='font-semibold mt-1 float-right text-sm lg:text-md '>LOGIN</NavLink>}
+                {auth ? <NavLink to='/profile' className='font-bold text-sm xl:text-md'>
+                  <img src={userInfo ? userInfo?.image_url : profile} alt="sjgf" className="h-10 w-10 rounded-full" />
+                </NavLink> : <NavLink to={`/login`} className='font-semibold mt-1 float-right text-sm lg:text-md '>LOGIN</NavLink>}
               </div>
-              <NavLink to="/cart" className='font-bold text-md  float-right px-1 text-black'><span className="float-right text-right">({length?.length})</span><Icon icon="bytesize:cart" width="25px" className="float-right px-1 my-auto" /></NavLink>
+              <NavLink to="/cart" className='font-bold text-md  float-right px-1 text-black'><span className="float-right text-right">({cart?.length || 0})</span><Icon icon="bytesize:cart" width="25px" className="float-right px-1 my-auto" /></NavLink>
             </div>
           </div>
         </div>

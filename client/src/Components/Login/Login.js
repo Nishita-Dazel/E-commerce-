@@ -24,7 +24,7 @@ const Login = () => {
     const data = await response.json();
     alert(data.message)
     localStorage.setItem('token', data.accessToken);
-    dispatch(IsLogin)
+    dispatch(IsLogin(true))
     goTo('/')
   }
 

@@ -17,6 +17,8 @@ import Registration from "./Components/Login/Registration";
 import Carousel from "./Components/Carousel/Carousel";
 import Hotsale from "./Components/Hotsale/Hotsale";
 import Success from "./Components/Socket/Success.js";
+import Notification from "./Components/Notification/Notification.js";
+import Company from "./Components/Company/Company.js";
 
 
 
@@ -32,10 +34,12 @@ const DashboardContainer = () => {
         <Route path="/category" element={<Category />} />
         <Route path="/carousel" element={<Carousel />} />
         <Route path="/hotsale" element={<Hotsale />} />
+        <Route path="/notification" element={<Notification />} />
         <Route path="/user" element={<User />} />
         <Route path="/details/:id" element={<ProductDetails />} />
         <Route path="/order" element={<Order />} />
         <Route path="/product/edit/:id" element={<ProductEdit />} />
+        <Route path="/company/info" element={<Company />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Container>
@@ -43,7 +47,7 @@ const DashboardContainer = () => {
 }
 
 
-const AuthContainer = ({auth}) => {
+const AuthContainer = ({ auth }) => {
   return (
     <Routes>
       <Route path="/" element={<Login auth={auth} />} />
@@ -58,7 +62,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token && token !== "null") {
       setAuth(true)
     } else {
       setAuth(false)
@@ -69,7 +73,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header auth={auth} />
-      {auth ? <DashboardContainer /> : <AuthContainer auth={()=>setAuth(true)} />}
+      {auth ? <DashboardContainer /> : <AuthContainer auth={() => setAuth(true)} />}
     </BrowserRouter>
   );
 }

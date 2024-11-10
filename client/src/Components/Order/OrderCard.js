@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Edit from '../Input/Edit';
 import { NavLink } from 'react-router-dom';
+import Modal from '../Modal/Modal'
 
 const OrderCard = ({ item }) => {
-    const sta = ['Pending', 'Confirm']
+    const sta = ['Draft', 'Cancel'];
+    const [isOpen, setIsOpen] = useState(false)
 
-    const [stas, setStat] = useState(item?.status)
+    const [stas, setStat] = useState('Draft');
+    useEffect(() => {
+        setStat(item?.status)
+    }, [])
 
     const handleStatusChange = async (status) => {
-        setStat(status)
+        if (status === "Cancel") {
+            setIsOpen(true);
+            setStat(item?.status);
+        } else {
+            setStat(status);
+        }
+    }
+
+    const ChangeStatus = async () => {
         const token = localStorage.getItem('token')
         const response = await fetch(`http://localhost:8050/api/product/order/update`, {
             method: 'PATCH',
@@ -16,10 +29,11 @@ const OrderCard = ({ item }) => {
                 'authorization': token,
                 'Content-type': 'application/json; charset=UTF-8',
             },
-            body: JSON.stringify({ id: item?.id, status: status }),
+            body: JSON.stringify({ id: item?.id, status: stas }),
         });
         const data = await response.json();
     }
+
 
     return (
         <tr key={item.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -46,16 +60,23 @@ const OrderCard = ({ item }) => {
             <td className="px-3 py-4">
                 {item.price * item?.qty}
             </td>
-            <td className="px-3 py-4">
+            <td className={`px-3 py-4`}>
                 {item?.qty}
             </td>
             <td className="px-3 py-4">
-                {item?.status === "Confirm" ? <div>
-                    {item?.status}
+                <Modal isOpen={isOpen} onClose={() => { setIsOpen(false) }}>
+                    <h1 className='text-center py-5  font-semibold'>Are you sure you want to cancel order</h1>
+                    <div className='flex justify-evenly items-center'>
+                        <button onClick={() => { setIsOpen(false) }} className='border rounded px-5 py-1 border-red-500 text-red-500'>No</button>
+                        <button onClick={ChangeStatus} className='border rounded px-5 py-1'>Yes</button>
+                    </div>
+                </Modal>
+                {stas === "Confirm" || stas === "Deliverd" || stas === "Cancel" ? <div className={`${stas === "Cancel" ? 'text-red-600' : 'text-gray-900'}`}>
+                    {stas}
                 </div> : <div>
-                    <select value={stas} onChange={(e) => { handleStatusChange(e.target.value); }} className="text-gray-900 text-sm cursor-pointer w-full py-2">
-                        {sta.map((item,i) => {
-                            return <option key={i} value={item} className=''>{item}</option>
+                    <select value={stas} onChange={(e) => { handleStatusChange(e.target.value); }} className={`${stas === "Cancel" ? 'text-red-600' : 'text-gray-900'} text-sm cursor-pointer w-full py-2`}>
+                        {sta.map((item, i) => {
+                            return <option key={i} value={item} className={`${item === "Cancel" ? 'text-red-600' : 'text-gray-900'}`}>{item}</option>
                         })}
                     </select>
                 </div>}

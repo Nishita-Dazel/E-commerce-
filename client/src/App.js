@@ -25,6 +25,7 @@ import Success from "./Components/PaymentSuccess/Success";
 import Cancel from "./Components/PaymentSuccess/Cancel";
 import Failed from "./Components/PaymentSuccess/Failed";
 import FeedBack from "./Components/FeedBack/FeedBack";
+import LiveChat from "./Components/LiveChat/LiveChat";
 
 
 
@@ -55,6 +56,7 @@ function App() {
         <Route path="/offer" element={<Offer />} />
         <Route path="/invoice" element={<Invoice />} />
         <Route path="/allproduct" element={<AllProduct />} />
+        <Route path="/liveChat" element={<LiveChat />} />
         <Route path="/productrequest" element={<ProductReq />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
       </Routes>

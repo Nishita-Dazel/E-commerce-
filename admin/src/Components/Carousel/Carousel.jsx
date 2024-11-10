@@ -18,16 +18,15 @@ const Carousel = () => {
         setData(data.items)
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchCategory();
-    },[])
+    }, [])
 
 
 
     const handleCreate = async (image_url) => {
         value.image_url = image_url;
         const token = localStorage.getItem('token');
-        console.log("data", value);
         try {
             const response = await fetch('http://localhost:8050/api/create/carousel', {
                 method: 'POST',
@@ -39,8 +38,9 @@ const Carousel = () => {
             });
 
             const data = await response.json();
-            setIsDisable(false)
-            console.log(data);
+            alert(data?.message)
+            setIsDisable(false);
+            setOpenModal(false);
         } catch (error) {
             console.error('Error updating variant:', error);
         }

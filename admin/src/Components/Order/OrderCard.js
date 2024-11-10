@@ -4,7 +4,7 @@ import Edit from '../../icons/Edit';
 import SelectionComponent from '../Input/SelectionComponent';
 
 const OrderCard = ({ id, name, qty, state, address, status, product_product, note,paymentstatus }) => {
-    const sta = ['Pending', 'Confirm']
+    const sta = ['Draft','Pending', 'Confirm','Deliverd','Çancel']
 
     const [stas, setStat] = useState(status)
 
@@ -20,7 +20,6 @@ const OrderCard = ({ id, name, qty, state, address, status, product_product, not
             body: JSON.stringify({ id: id, status: status }),
         });
         const data = await response.json();
-        console.log(data);
     }
     
     return (
@@ -72,7 +71,7 @@ const OrderCard = ({ id, name, qty, state, address, status, product_product, not
                 </div>
             </td>
             <td className="px-4 py-4">
-                {paymentstatus}
+                {paymentstatus || 'N/A'}
             </td>
             <td className="px-4 py-4">
                 {note}

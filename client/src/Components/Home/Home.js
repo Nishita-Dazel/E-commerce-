@@ -10,12 +10,12 @@ const Home = () => {
 
   return (
     <div className='mx-auto '>
-      <div className='bg-white px-5'><Banner /></div>
+      <div className='bg-white w-full px-0 md:px-3 lg:px-5'><Banner /></div>
 
-      <div className='bg-white px-5 py-5'>
+      <div className='bg-white md:px-3 lg:px-5 py-5'>
         <ProductCategory />
       </div>
-      <div className='bg-white px-5'>
+      <div className='bg-white md:px-3 lg:px-5'>
         <Carousel />
       </div>
       <TrendingProduct />

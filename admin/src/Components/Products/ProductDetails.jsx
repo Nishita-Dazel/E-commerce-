@@ -68,7 +68,7 @@ const PracriceDetailsCard = () => {
   }
 
 
-  console.log(data);
+
 
   return (
     <div className='bg-white'>

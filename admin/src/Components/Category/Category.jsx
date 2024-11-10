@@ -41,8 +41,9 @@ const Category = () => {
             });
 
             const data = await response.json();
-            setIsDisable(false)
-            console.log(data);
+            alert(data?.message)
+            setIsDisable(false);
+            setOpenModal(false);
         } catch (error) {
             console.error('Error updating variant:', error);
         }
