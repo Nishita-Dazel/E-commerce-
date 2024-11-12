@@ -29,7 +29,6 @@ const Category = () => {
     const handleCreate = async (image_url) => {
         value.image_url = image_url;
         const token = localStorage.getItem('token');
-        console.log("data", value);
         try {
             const response = await fetch('http://localhost:8050/api/create/category', {
                 method: 'POST',

@@ -19,6 +19,7 @@ import Hotsale from "./Components/Hotsale/Hotsale";
 import Success from "./Components/Socket/Success.js";
 import Notification from "./Components/Notification/Notification.js";
 import Company from "./Components/Company/Company.js";
+import State from "./Components/State/State.js";
 
 
 
@@ -41,6 +42,7 @@ const DashboardContainer = () => {
         <Route path="/product/edit/:id" element={<ProductEdit />} />
         <Route path="/company/info" element={<Company />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/state" element={<State />} />
       </Routes>
     </Container>
   )
