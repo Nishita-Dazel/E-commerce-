@@ -1,6 +1,5 @@
 const db = require("../models");
 const State = db.state;
-
 const Op = db.Sequelize.Op;
 
 

@@ -60,5 +60,12 @@
         "name":"Conpany Info",
         "route":"company/info",
         "icon":"fluent-mdl2:product-variant"
+    },
+    {
+        "id":"3",
+        "name":"State",
+        "route":"state",
+        "icon":"uil:create-dashboard"
+
     }
 ]
