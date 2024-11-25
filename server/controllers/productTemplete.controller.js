@@ -158,12 +158,12 @@ exports.getProductVariant = async (req, res) => {
           attributes: ['name', 'value'],
         },
         {
-          model:Rating,
-          attribute:['id','star','comment'],
-          include:[
+          model: Rating,
+          attribute: ['id', 'star', 'comment'],
+          include: [
             {
-              model:User,
-              attributes:['id', 'first_name','last_name']
+              model: User,
+              attributes: ['id', 'first_name', 'last_name']
             }
           ]
         }
@@ -305,3 +305,28 @@ exports.createProduct = async (req, res) => {
 
 }
 
+exports.DeleteProductTemplate = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const deletedCount = await ProductTemplate.destroy({
+      where: { id: id }
+    });
+
+    if (deletedCount > 0) {
+      res.status(200).send({
+        success: true,
+        message: `ProductTemplate with id ${id} deleted successfully.`,
+      });
+    } else {
+      res.status(404).send({
+        success: false,
+        message: `No ProductTemplate found with id ${id}.`,
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: error.message,
+    });
+  }
+};

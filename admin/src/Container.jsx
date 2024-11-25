@@ -47,7 +47,7 @@ const Container = ({ children }) => {
                         ))}
 
 
-                        <NavLink to={``} onClick={() => { localStorage.setItem('token', '') }} className='font-bold text-lg hover:bg-gray-200 rounded flex justify-start items-center gap-2 p-2 w-full'>
+                        <NavLink to={`/`} onClick={() => { localStorage.setItem('token', '') }} className='font-bold text-lg hover:bg-gray-200 rounded flex justify-start items-center gap-2 p-2 w-full'>
                             <Icon icon={"uiw:logout"} width='20px' />
                             {'Logout'}
                         </NavLink>

@@ -99,8 +99,6 @@ exports.singIn = async (req, res) => {
             return res.status(404).send({ success: false, message: "User Not found." });
         }
 
-
-
         var passwordIsValid = bcrypt.compareSync(
             req.body.password,
             data.password
@@ -114,19 +112,11 @@ exports.singIn = async (req, res) => {
         }
 
 
-        console.log(config.secret)
-
         const token = jwt.sign({ id: data.id }, config.secret, {
             algorithm: 'HS256',
             allowInsecureKeySizes: true,
             expiresIn: 86400, // 24 hours
         });
-
-
-        // const token = jwt.sign({ userId: user.id, email: user.email }, 'your-secret-key', {
-        //         expiresIn: '1h', // Set the expiration time for the token
-        // });    
-
 
         res.status(200).send({
             success: true,

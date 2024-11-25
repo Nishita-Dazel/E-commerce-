@@ -21,5 +21,6 @@ module.exports = function (app) {
     app.get("/api/get/product/search/:product", controller.searchProduct);
     app.get("/api/get/product/templete/by/category/:id", controller.getProductTempleteByCategory);
     app.get("/api/get/product/variant/:id", controller.getProductVariant);
+    app.delete("/api/delete/product/",Jwt.verifyToken, controller.DeleteProductTemplate);
 
 };
