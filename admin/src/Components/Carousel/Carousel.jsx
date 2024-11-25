@@ -49,18 +49,13 @@ const Carousel = () => {
 
     const handleUpload = async () => {
         const formData = new FormData();
-
-
-        // setIsDisable(true)
         if (image_url) {
             formData.append('image_url', image_url);
         } else {
             console.error("Image file is missing in the payload");
             return;
         }
-
         const token = localStorage.getItem('token');
-
         try {
             const response = await fetch('http://localhost:8050/api/upload/image', {
                 method: 'POST',
@@ -78,6 +73,7 @@ const Carousel = () => {
             console.error('Error uploading image:', error);
         }
     }
+    
     return (
         <div className='relative'>
             <div className='absolute top-0 right-0'>
