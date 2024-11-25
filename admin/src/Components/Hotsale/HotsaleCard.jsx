@@ -31,8 +31,8 @@ const HotsaleCard = ({ id, template_id, product_template }) => {
             },
         });
         const data = await response.json();
-        setLoading(true)
-        console.log(data);
+        setLoading(false);
+        setDelet(false)
     };
 
     const handleUpdate = async (image_url) => {
