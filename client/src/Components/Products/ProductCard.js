@@ -11,7 +11,7 @@ const ProductCard = ({ id, image_url, name, price, standard_price }) => {
     <div className='w-full p-2 relative rounded-md mx-auto bg-white'>
       { dis > 0 && <button className='px-2 absolute top-1 right-1 z-40 rounded-full mb-1 bg-red-500 text-white'>{parseInt(dis)}%</button>}
       <div className='overflow-hidden'>
-        <img src={image_url} alt='image4' className='object-cover mx-auto h-40 md:h-48 lg:h-56 rounded-md hover:scale-125 transition-all duration-1000 cursor-pointer' />
+        <img src={image_url} alt='image4' className='object-cover mx-auto h-36 md:h-44 lg:h-56 rounded-md hover:scale-125 transition-all duration-1000 cursor-pointer' />
       </div>
       <h1 className='font-semibold py-1 lg:pt-3 text-sm lg:text-md'>{name}</h1>
 

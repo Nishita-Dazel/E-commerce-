@@ -85,7 +85,7 @@ const Carousel = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="M11 9V5H9v4H5v2h4v4h2v-4h4V9zm-1 11a10 10 0 1 1 0-20a10 10 0 0 1 0 20" /></svg>
                 </button>
             </div>
-            <div className='grid grid-cols-6 gap-2 bg-gray-100'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-2 bg-gray-100'>
                 {
                     data.map(({ id, name, image_url }) => {
                         return <CarouselCard id={id} name={name} image={image_url} />

@@ -32,6 +32,7 @@ const HotsaleCard = ({ id, template_id, product_template }) => {
         });
         const data = await response.json();
         setLoading(false);
+        alert(data?.message)
         setDelet(false)
     };
 
@@ -94,7 +95,7 @@ const HotsaleCard = ({ id, template_id, product_template }) => {
         <div className='border rounded-md p-2 shadow-lg bg-white relative'>
 
             <div>
-                <img src={product_template?.image_url} onClick={() => { }} alt='nfier' className='h-48 w-full cursor-pointer object-cover rounded m-auto' />
+                <img src={product_template?.image_url} onClick={() => { }} alt='nfier' className='h-36 lg:h-48 w-full cursor-pointer object-cover rounded m-auto' />
             </div>
 
             <div className={`absolute ${show ? "block" : "hidden"} bottom-8 right-3 bg-white p-2 rounded shadow-lg `}>
@@ -125,7 +126,7 @@ const HotsaleCard = ({ id, template_id, product_template }) => {
 
             {/* Delete modal */}
             <Modal show={delet} size={"300px"} handleClose={() => { setDelet(false) }}>
-                <h1 className='text-center font-semibold text-xl pt-6 pb-3'>Are you sure to delete this?</h1>
+                <h1 className='text-center font-semibold text-xl pt-6 pb-3'>Are you sure want to delete this?</h1>
                 <div className='flex justify-around'>
                     <button onClick={() => setDelet(false)} className='border py-2 px-7 rounded border-red-500'>No</button>
                     <button onClick={handleDelete} className={`border border-red-500 rounded py-2 ${loading ? "px-7" : "px-5"}`}>

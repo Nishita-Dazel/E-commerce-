@@ -23,36 +23,36 @@ const Dashboard = () => {
                     <div className='p-5 border rounded-full bg-[#FFF2E8]'>
                         <img src='https://cdn-icons-png.flaticon.com/128/6586/6586553.png' className='h-12 w-12 ' alt='image' />
                     </div>
-                    <div>
-                        <h1 className='font-bold text-5xl'>50</h1>
-                        <p className='font-semibold'>This is text</p>
+                    <div className='flex justify-start items-end gap-1'>
+                        <h1 className='font-bold text-5xl'>5</h1>
+                        <p className='font-semibold'>New Orders</p>
                     </div>
                 </div>
                 <div className='shadow-lg flex justify-around items-center p-5 rounded-lg bg-white min-h-[170px]'>
                     <div className='p-5 border rounded-full bg-[#FFF2E8]'>
                         <img src='https://cdn-icons-png.flaticon.com/128/6586/6586553.png' className='h-12 w-12 ' alt='image' />
                     </div>
-                    <div>
-                        <h1 className='font-bold text-5xl'>50</h1>
-                        <p className='font-semibold'>This is text</p>
+                    <div className='flex justify-start items-end gap-1'>
+                        <h1 className='font-bold text-5xl'>2</h1>
+                        <p className='font-semibold'>Customer Request</p>
                     </div>
                 </div>
                 <div className='shadow-lg flex justify-around items-center p-5 rounded-lg bg-white min-h-[170px]'>
                     <div className='p-5 border rounded-full bg-[#FFF2E8]'>
                         <img src='https://cdn-icons-png.flaticon.com/128/6586/6586553.png' className='h-12 w-12 ' alt='image' />
                     </div>
-                    <div>
+                    <div className='flex justify-start items-end gap-1'>
                         <h1 className='font-bold text-5xl'>50</h1>
-                        <p className='font-semibold'>This is text</p>
+                        <p className='font-semibold'>Customer Complains</p>
                     </div>
                 </div>
                 <div className='shadow-lg flex justify-around items-center p-5 rounded-lg bg-white min-h-[170px]'>
                     <div className='p-5 border rounded-full bg-[#FFF2E8]'>
                         <img src='https://cdn-icons-png.flaticon.com/128/6586/6586553.png' className='h-12 w-12 ' alt='image' />
                     </div>
-                    <div>
-                        <h1 className='font-bold text-5xl'>50</h1>
-                        <p className='font-semibold'>This is text</p>
+                    <div className='flex justify-start items-end gap-1'>
+                        <h1 className='font-bold text-5xl'>12</h1>
+                        <p className='font-semibold'>Notifications</p>
                     </div>
                 </div>
 

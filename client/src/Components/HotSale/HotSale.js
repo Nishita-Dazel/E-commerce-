@@ -18,7 +18,7 @@ const HotSale = () => {
     return (
         <div className='bg-[#313CBF] rounded'>
             <h1 className='font-bold text-white p-2 text-2xl'>Hot Sale</h1>
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6  mx-auto w-[99%] gap-2 mt-1 pb-2'>
+            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6  mx-auto w-[99%] gap-2 mt-1 pb-2'>
                 {data.map(({ id, template_id, product_template }) => {
                     return <ProductCard id={product_template?.id} category_id={product_template?.category_id} description={product_template?.description} image_url={product_template?.image_url} name={product_template?.name} price={product_template?.price} standard_price={product_template?.price} />
                 })}

@@ -82,7 +82,7 @@ const Hotsale = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20"><path fill="currentColor" d="M11 9V5H9v4H5v2h4v4h2v-4h4V9zm-1 11a10 10 0 1 1 0-20a10 10 0 0 1 0 20" /></svg>
                 </button>
             </div>
-            <div className='grid grid-cols-6 gap-2 bg-gray-100'>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 bg-gray-100'>
                 {
                     data.map(({ id, template_id, product_template }) => {
                         return <HotsaleCard id={id} template_id={template_id} product_template={product_template} />
