@@ -42,7 +42,7 @@ const Charts2 = () => {
     theme: "light2",
     exportEnabled: true,
     title: {
-      text: "Netflix Stock Price in 2016"
+      text: "Stock Price in 2024"
     },
     subtitles: [{
       text: "Weekly Averages"

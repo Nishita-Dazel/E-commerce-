@@ -113,11 +113,12 @@ const CreactProduct = () => {
     return (
         <div className=''>
             <div className=''>
-                <h1 className='text-3xl font-semibold text-center'>Product Create</h1>
+                <h1 className='text-3xl font-semibold text-center py-5'>Product Create</h1>
 
-                <div className='max-w-[600px] mx-auto'>
+                <div className='max-w-[600px] mx-auto border border-[#c71f66] rounded-lg p-5'>
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 pb-14'>
                         <div className='mt-5 grid col-span-2'>
+                            <h1 className='font-semibold py-1'>Select your Product image/Picture</h1>
                             <input accept="image/*" onChange={(e) => { setImage_Url(e.target.files[0]) }} type='file' />
                         </div>
                         <InputComponent onChange={(e) => setValues({ ...values, name: e })} label={"Product Name"} placeholder={"Product Name"} type={""} isRequered={""} />
@@ -145,7 +146,7 @@ const CreactProduct = () => {
                     
 
 
-                    <Modal size={"350px"} show={show} handleClose={() => { setShow(false) }}>
+                    <Modal size={"500px"} show={show} handleClose={() => { setShow(false) }} className='w-[450px]'>
                         <div className={`pb-5 ${attr.value.length > 0 ? "block" : "hidden"}`}>
                             <h1 className='text-start'>Attribute Name : {attr.name}</h1>
                             <div className='flex gap-2'>

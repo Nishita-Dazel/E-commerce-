@@ -5,43 +5,6 @@ const User = db.user;
 const Role = db.role;
 const PUBLIC_USER_ID = 1;
 
-// verifyToken = async (req, res, next) => {
-//     let authorization = req.headers["authorization"];
-//     let token = authorization && authorization.split(" ")[1];
-
-//     if (!token) {
-//         return res.status(403).send({
-//             success: false,
-//             message: "No token provided!"
-//         });
-//     }
-
-//     jwt.verify(token, config.secret, async (err, decoded) => {
-//         if (err) {
-//             return res.status(401).send({
-//                 success: false,
-//                 message: "Unauthorized!",
-//             });
-//         }
-//         const user = await User.findByPk(decoded.id);
-//         if (!user || user && !user.active) {
-//             return res.status(401).send({
-//                 success: false,
-//                 message: "User has been removed or deactivated!",
-//             });
-//         }
-
-//         const userRoles = await user.getRoles()
-
-//         req.userId = decoded.id;
-//         req.partnerId = decoded.partnerId;
-//         req.userRoles = userRoles.map(role => role.name);
-
-//         next();
-//     });
-// };
-
-
 isPublicUser = async (req, res, next) => {
     let authorization = req.headers["authorization"];
     let token = authorization && authorization.split(" ")[1];

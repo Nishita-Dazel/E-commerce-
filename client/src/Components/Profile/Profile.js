@@ -54,7 +54,7 @@ const Profile = () => {
 
                     <div className='gap-4 bg-white w-[95%] lg:w-[92%] border-2 rounded mx-auto p-4'>
                       <div className=''>
-                        <img src='https://cdn-icons-png.flaticon.com/128/149/149071.png' alt='' className='h-20 lg:h-28 w-20 lg:w-28 mx-auto rounded-full' />
+                        <img src={userData?.image_url ? userData?.image_url : 'https://cdn-icons-png.flaticon.com/128/149/149071.png'} alt='' className='h-20 lg:h-28 w-20 lg:w-28 mx-auto rounded-full' />
                       </div>
                       <InputComponent placeholder={userData?.first_name || 'N/A'} onChange={(v) => { }} label={'First Name'} />
                       <InputComponent placeholder={userData?.last_name || 'N/A'} onChange={(v) => { }} label={'Last Name'} />

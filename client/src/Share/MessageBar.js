@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 const socket = io('http://localhost:8050');
 
 const MessageBar = () => {
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
     const [allMessage, setAllMessage] = useState([]);
     const [message, setMessage] = useState('')
     const [recieverId, setrecieverId] = useState('2');
@@ -50,7 +50,7 @@ const MessageBar = () => {
                             <div className='flex justify-start items-start gap-2'>
                                 <img className='h-12 w-12 rounded-full object-cover' src='https://img.freepik.com/premium-vector/man-professional-business-casual-young-avatar-icon-illustration_1277826-628.jpg?w=740' alt='image' />
                                 <div>
-                                    <h1 className='pt-1 font-semibold'>Mehedi hasan</h1>
+                                    <h1 className='pt-1 font-semibold'>Abir Mahmud</h1>
                                     <p className='text-xs'>Active now</p>
                                 </div>
                             </div>

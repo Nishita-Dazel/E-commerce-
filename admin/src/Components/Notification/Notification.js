@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import NotificationCard from './NotificationCard';
 
 const Notification = () => {
     const [data, setData] = useState([]);
@@ -17,14 +18,14 @@ const Notification = () => {
     useEffect(() => {
         getOrder()
     }, [])
+
+    console.log(data);
     return (
         <div>
-            Notification
+            <h1>Notification</h1>
 
-            {data.map((item,i) => {
-                return <div key={i} className='bg-white p-2 rounded-md m-1'>
-                    <h1>{item?.name} is orderd {item?.product_product.name}</h1>
-                </div>
+            {data?.map((item) => {
+                return <NotificationCard key={item?.id} item={item} />
             })}
         </div>
     );

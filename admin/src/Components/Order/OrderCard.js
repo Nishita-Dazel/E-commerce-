@@ -4,7 +4,7 @@ import Edit from '../../icons/Edit';
 import SelectionComponent from '../Input/SelectionComponent';
 
 const OrderCard = ({ id, name, qty, state, address, status, product_product, note,paymentstatus }) => {
-    const sta = ['Draft','Pending', 'Confirm','Deliverd','Çancel']
+    const sta = ['Draft','Pending', 'Confirm','Deliverd']
 
     const [stas, setStat] = useState(status)
 

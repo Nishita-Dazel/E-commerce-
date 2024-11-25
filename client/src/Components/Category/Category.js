@@ -11,7 +11,7 @@ const Category = () => {
     const fetchData = async () => {
         const response = await fetch(`http://localhost:8050/api/get/product/templete/by/category/${params.id}`);
         const data = await response.json();
-        setData(data.items);
+        setData(data?.items);
     }
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const Category = () => {
         setSelectedOption(event.target.value);
     };
 
-
+console.log(data);
     return (
         <div className='bg-white'>
             <div className='grid grid-cols-12 w-[97%] md:w-[95%] lg:w-[90%] py-8 gap-8'>
@@ -35,8 +35,7 @@ const Category = () => {
                         <div className='grid grid-cols-12 gap-2 pb-2'>
                             <div className='grid col-span-7'>
                                 <div>
-                                    <select value={selectedOption} onChange={handleOptionChange}
-                                        className='border focus:outline-none border-red-500 py-1 px-1 rounded'>
+                                    <select value={selectedOption} onChange={handleOptionChange} className='border focus:outline-none border-red-500 py-1 px-1 rounded'>
                                         <option value="100 - 500 Tk">100 - 500 Tk</option>
                                         <option value="500 - 1000 Tk">500 - 1000 Tk</option>
                                         <option value="1000 - 2500 Tk">1000 - 2500 Tk</option>
@@ -75,11 +74,11 @@ const Category = () => {
                 </div>
                 <div className=' grid col-span-12 lg:col-span-9'>
                     <div>
-                        <h1 className='font-semibold pl-3'>Home / {params.name}</h1>
+                        <h1 className='font-semibold pl-3'>Home / {params?.name}</h1>
                         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto w-[97%] gap-2 mt-3'>
-                            {data.map(({ id, category_id, description, image_url, name, price, standerd_price }) => (
+                            {data.map(({ id, category_id, description, image_url, name, price, standard_price }) => (
                                 <div key={uuidv4()} className="grid duration-300 mx-auto border shadow p-2 w-full px-4 bg-white rounded-lg">
-                                    <ProductCard id={id} category_id={category_id} description={description} image_url={image_url} name={name} price={price} standerd_price={standerd_price} />
+                                    <ProductCard key={uuidv4()} id={id} category_id={category_id} description={description} image_url={image_url} name={name} price={price} standard_price={standard_price} />
                                 </div>
                             ))}
                         </div>
